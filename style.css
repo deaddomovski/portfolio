@@ -1,0 +1,58 @@
+h1  {
+    color: red;
+    text-align: center;
+}
+
+h2  {
+    color:aqua;
+    
+}
+
+body    {
+    background-color: black;
+}
+p   {
+    font-size: 18px;
+}
+
+img {
+    border-radius: 10px;
+}
+
+.my-link    {
+    color: green;
+    text-decoration: none;
+}
+
+.intro  {
+    font-style: italic;
+}
+
+.avatar {
+    border: 2px solid white;
+} 
+
+.container {
+    width: 600px;
+    margin: 0 auto;    /* центрирует блок по горизонтали */
+    padding: 20px;
+    background-color: #111;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #222;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: crimson;
+    text-decoration: none;
+}
