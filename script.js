@@ -64,3 +64,12 @@ const devoloper = {
 console.log(devoloper.name)
 console.log(devoloper.skills[1])
 console.log(devoloper.greet())
+
+const input = document.getElementById("nameInput")
+const btn = document.getElementById("greetBtn")
+const result = document.getElementById("result")
+
+btn.addEventListener("click", () => {
+    const name = input.value
+    result.textContent = "Привет, " + name + "!"
+})
