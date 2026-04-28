@@ -1,3 +1,25 @@
-<input type="text" id="nameInput" placeholder="Введи имя">
-<button id="greetBtn">Поприветствовать</button>
-<p id="result"></p>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Fetch test</title>
+</head>
+<body>
+    <button id="btn">Получить пользователя</button>
+    <p id="result"></p>
+
+    <script>
+        const btn = document.getElementById("btn")
+        const result = document.getElementById("result")
+
+        btn.addEventListener("click", () => {
+            fetch("https://randomuser.me/api/")
+                .then(response => response.json())
+                .then(data => {
+                    const user = data.results[0]
+                    result.textContent = user.name.first + " " + user.name.last + " " + user.email + " " + user.location.country
+                })
+        })
+    </script>
+</body>
+</html>
