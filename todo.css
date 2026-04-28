@@ -1,12 +1,12 @@
 body {
-    background-color: #04202c;
-    color: #c9d1c8;
+    background-color: #fcf7ff;
+    color: #655560;
 }
 
 h1 {
     display: flex;
     justify-content: center;
-    color: #c9d1c8;
+    color: #655560;
 }
 
 .inputBar   {
@@ -20,17 +20,17 @@ h1 {
 }
 
 #todoInput   {
-    background-color: #304040;
-    color: #c9d1c8;
-    border: 1px solid #5b7065;
+    background-color: #c4cad0; 
+    color: #655560; 
+    border: 1px solid #878c8f;
     width: 500px;
     font-size: 20px;
 }
 
 #addBtn {
     width: 100px;
-    background-color: rgb(1, 155, 1);
-    color:#c4dfe6;
+    background-color: #a4969b; 
+    color: #fcf7ff;
     font-size: 20px;
 }
 
@@ -44,21 +44,19 @@ h1 {
 }
 
 li {
-    background-color: #304040;
-    border: 5px solid #5b7065;
-    color: #c9d1c8;
+    background-color: #c4cad0; 
+    border: 5px solid #878c8f; 
+    color: #655560;
 }
 
 .delete-btn  {
-    background-color: red;
-    color:#04202c;
+    background-color: #655560; 
+    color: #fcf7ff;
     border-radius: 6px;
     margin: 10px;
 }
 
-body { background-color: #fcf7ff; color: #655560; }
-h1 { color: #655560; }
-#todoInput { background-color: #c4cad0; color: #655560; border: 1px solid #878c8f; }
-#addBtn { background-color: #a4969b; color: #fcf7ff; }
-li { background-color: #c4cad0; border: 5px solid #878c8f; color: #655560; }
-.delete-btn { background-color: #655560; color: #fcf7ff; }
+.done   {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
