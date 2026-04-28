@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="todo.css">
+        <title>
+            ToDo list
+        </title>
+    </head>
+    <body>
+        <h1>Todo List</h1>
+        <div class="inputBar">
+            <input type="text" id="todoInput" placeholder="New Task">
+            <button id="addBtn">Add</button>
+        </div>
+        <ol id="todoList"></ol>
+
+        <script>
+            const input = document.getElementById("todoInput")
+            const addBtn = document.getElementById("addBtn")
+            const list = document.getElementById("todoList")
+
+            addBtn.addEventListener("click", () =>  {
+                const text = input.value 
+                if (text === "") return
+
+                const li = document.createElement("li")
+                li.textContent = text
+
+                const deleteBtn = document.createElement("button")
+                deleteBtn.classList.add("delete-btn")
+                deleteBtn.textContent = "Remove"
+                deleteBtn.addEventListener("click", () => {
+                    list.removeChild(li)
+                } )
+                li.appendChild(deleteBtn)
+                list.appendChild(li)
+                input.value = ""
+            }
+        )
+        </script>
+    </body>
