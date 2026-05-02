@@ -5,6 +5,6 @@ function App() {
       <p>Мой первый компонент</p>
     </div>
   )
-}fefef
+}fefeffefef
 
 export default App
