@@ -5,6 +5,6 @@ function App() {
       <p>Мой первый компонент</p>
     </div>
   )
-}fefeffefef
+}fefeffefefsdjfgb wef
 
 export default App
