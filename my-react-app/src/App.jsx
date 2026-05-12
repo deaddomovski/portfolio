@@ -4,7 +4,6 @@ function App() {
       <h1>Привет, React!</h1>
       <p>Мой первый компонент</p>
     </div>
-  )dloldldf;ermkglmrqegoregkregmergmreglregrermk;gmkrgm
-}
+  )dloldldf;ermkglmrqegoregkreg
 
 export default App
