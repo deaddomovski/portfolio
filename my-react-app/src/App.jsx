@@ -1,13 +1,15 @@
 import Button from './Button'
+import Counter from './Counter'
 
 function App() {
   return (
     <div>
       <h1>Привет, React!</h1>
       <p>Мой первый компонент</p>
-      <Button text="Сохранить" color="green"/>
-      <Button text="Удалить" color="gray"/>
-      <Button text="Отмена" color="red"/>
+      <Button text="Save" color="green"/>
+      <Button text="Delete" color="gray"/>
+      <Button text="Cansel" color="red"/>
+      <Counter />
     </div>
   )
 }
