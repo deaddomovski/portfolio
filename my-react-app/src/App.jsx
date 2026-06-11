@@ -1,5 +1,6 @@
 import Button from './Button'
 import Counter from './Counter'
+import Timer from './Timer'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Button text="Delete" color="gray"/>
       <Button text="Cansel" color="red"/>
       <Counter />
+      <Timer />
     </div>
   )
 }
