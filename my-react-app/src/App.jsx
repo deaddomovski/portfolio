@@ -1,6 +1,7 @@
 import Button from './Button'
 import Counter from './Counter'
 import Timer from './Timer'
+import TodoList from './TodoList'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Button text="Cansel" color="red"/>
       <Counter />
       <Timer />
+      <TodoList />
     </div>
   )
 }
