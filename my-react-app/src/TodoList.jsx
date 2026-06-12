@@ -1,8 +1,9 @@
-import { useEffect, useState} from "react";
+import { useEffect, useState, useRef } from "react";
 
 function TodoList() {
     const [tasks, setTasks] = useState(['Learning React','Make project', 'Push on GitHub'])
     const [newTask, setNewTask] = useState('')
+    const inputRef = useRef(null)
 
     function removeTask(indexToRemove) {
         setTasks(tasks.filter((task, index) => index !== indexToRemove))
@@ -11,6 +12,7 @@ function TodoList() {
     function AddTask(){
             setTasks([ ...tasks , newTask])
             setNewTask('')
+            inputRef.current.focus()
     }
 
     return (
@@ -18,6 +20,7 @@ function TodoList() {
             <input 
                 value={newTask}
                 onChange={(e) => setNewTask(e.target.value)}
+                ref={inputRef}
             />
             <ul>
                 {tasks.map((task, index) => (
