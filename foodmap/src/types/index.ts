@@ -10,3 +10,12 @@ export interface Restaurant {
     lat: number
     lng: number
 }
+
+export interface Dish {
+    id: number
+    name: string
+    price: number
+    restaurantId: number
+    restaurantName: string
+    category: string
+}

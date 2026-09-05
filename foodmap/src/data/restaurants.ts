@@ -38,8 +38,8 @@ export const restaurants: Restaurant[] = [
     lng: 41.6412
     },
     {
-    id:4,
-    name: "Sushi Bar Batumi",
+    id: 4,
+    name: "RollBar",
     address: "Ninoshvili Street 3",
     rating: 4.0,
     cuisine: "Japanese",
