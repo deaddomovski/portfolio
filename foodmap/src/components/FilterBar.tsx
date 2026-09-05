@@ -14,7 +14,7 @@ function FilterBar({selected, onSelect}: FilterBarProps) {
             </button>
         ))}
     </div>
-)
+    )
 }
 
 export default FilterBar
