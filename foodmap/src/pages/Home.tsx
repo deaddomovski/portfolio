@@ -6,16 +6,17 @@ import { dishes } from '../data/dishes';
 
 function Home() {
     const [selected, setSelected] = useState('All')
-    const [budget, setBudget] = useState(0)
-    const filtered = restaurants
+    const [budget, setBudget] = useState('')
+    const budgetNum = Number(budget)
+const filtered = restaurants
     .filter(r => selected === 'All' || r.cuisine === selected)
-    .filter(r => budget === 0 || dishes.some(d => d.restaurantId === r.id && d.price <= budget))
+    .filter(r => budgetNum === 0 || dishes.some(d => d.restaurantId === r.id && d.price <= budgetNum))
 
 
 return (
         <div>
             <label htmlFor="budget">Your budget: </label>
-            <input id="budget" type="number" value={budget} onChange={(e) => setBudget(Number(e.target.value))}></input>
+            <input id="budget" type="number" value={budget} onChange={(e) => setBudget(e.target.value)}></input>
             <FilterBar selected={selected} onSelect={setSelected} />
                 {filtered.map((restaurant) => (
             <RestaurantCard key={restaurant.id} restaurant={restaurant} />

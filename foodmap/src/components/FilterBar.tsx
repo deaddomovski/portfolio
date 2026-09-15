@@ -9,7 +9,11 @@ function FilterBar({selected, onSelect}: FilterBarProps) {
     return (
     <div>
         {cuisines.map((cuisine) => (
-            <button key={cuisine} onClick={() => onSelect(cuisine)}>
+            <button
+                key={cuisine}
+                onClick={() => onSelect(cuisine)}
+                disabled={cuisine === selected}
+            >
                 {cuisine}
             </button>
         ))}
