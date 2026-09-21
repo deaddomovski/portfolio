@@ -48,6 +48,18 @@ export const restaurants: Restaurant[] = [
     imageUrl: "",
     lat: 41.6134,
     lng: 41.6356
+    },
+   {
+    id: 5,
+    name: "Lima",
+    address: "61b Javakhishvili St, Batumi 6010",
+    rating: 4.4,
+    cuisine: "Georgian",
+    priceRange: 2,
+    description: "Georgian restaurant with barbecue, khinkali and khachapuri",
+    imageUrl: "",
+    lat: 41.6438,
+    lng: 41.6297
     }
 ]
 
