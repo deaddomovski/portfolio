@@ -60,6 +60,18 @@ export const restaurants: Restaurant[] = [
     imageUrl: "",
     lat: 41.6438,
     lng: 41.6297
+    },
+    {
+        id: 6,
+        name: "Bobo",
+        address: "",
+        rating: 0,
+        cuisine: "Georgian",
+        priceRange: 2,
+        description: "Georgian and Uzbek cuisine, khinkali, khachapuri and grill",
+        imageUrl: "",
+        lat: 0,
+        lng: 0
     }
 ]
 
