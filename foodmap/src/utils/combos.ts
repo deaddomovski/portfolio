@@ -68,3 +68,35 @@ function scoreCombo(combo: Combo, budget: number, mode: Mode): number {
         w.price * priceScore + w.taste * tastyScore + w.filling * fillingScore
     )
 }
+
+function matchTemplate(dishes: Dish[], roles: string[], chosen: Dish[], budget: number, result: Combo[]){
+        if (roles.length === 0) {
+            let summ = 0
+            for (const a of chosen) {
+                summ = a.price + summ
+            }
+            result.push({items: chosen, total: summ})
+            return;
+        }
+        const role = roles[0]
+        const rest = roles.slice(1)
+        let spent = 0
+        for (const a of chosen){
+            spent = a.price + spent
+        }
+        for (const dish of getByRole(dishes, role)) {
+                if (spent + dish.price > budget){
+                continue
+            }
+            matchTemplate(dishes, rest,[...chosen, dish], budget, result)
+        }
+}
+
+export function findCombos(dishes: Dish[], budget: number, mode: Mode): Combo[] {
+    const pillow : Combo[] = []
+    for (const template of templates){
+        matchTemplate(dishes, template, [], budget, pillow)
+    }
+    pillow.sort((a, b) => scoreCombo(b, budget,mode) - scoreCombo(a,budget,mode))
+    return pillow.slice(0,3)
+}

@@ -3,6 +3,7 @@ import { restaurants } from "../data/restaurants";
 import { dishes } from '../data/dishes'
 import { useState } from "react"
 import { findCombos } from '../utils/combos'
+import { Mode } from '../utils/combos'
 
 function RestaurantPage() {
     const { id } = useParams()
@@ -11,7 +12,7 @@ function RestaurantPage() {
     const restaurant = restaurants.find(r => r.id === Number(id))
     if (!restaurant) return <p>Ресторан не найден</p>
     const restaurantDishes = dishes.filter(d => d.restaurantId === restaurant.id)
-    const combos = budgetNum > 0 ? findCombos(restaurantDishes, budgetNum) : []
+    const combos = budgetNum > 0 ? findCombos(useState: useState<Mode>(...)) : []
     const budgetDishes = budgetNum === 0
         ? restaurantDishes
         : restaurantDishes.filter(d => d.price <= budgetNum)

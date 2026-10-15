@@ -18,4 +18,6 @@ export interface Dish {
     restaurantId: number
     restaurantName: string
     category: string
+    calories: number
+    tags: string[]
 }
