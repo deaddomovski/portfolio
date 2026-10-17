@@ -33,7 +33,7 @@ function RestaurantPage() {
             <p>Total: {combo.total}₾</p>
             <ul>
                 {combo.items.map(dish => (
-                    <li key={dish.id}>{dish.name} — {dish.price}₾</li>
+                    <li key={dish.id}>{dish.minQty && `${dish.minQty} × `}{dish.name} — {dish.price * (dish.minQty ?? 1)}₾</li>
                 ))}
             </ul>
         </div>
