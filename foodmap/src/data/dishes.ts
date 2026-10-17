@@ -175,8 +175,8 @@ export const dishes: Dish[] = [
     { id: 150, name: "Olive oil", price: 1, restaurantId: 5, restaurantName: "Lima", category: "sauce", calories: 120, tags: ["vegetarian", "vegan"] },
     { id: 151, name: "Adjika with green walnuts", price: 5, restaurantId: 5, restaurantName: "Lima", category: "sauce", calories: 140, tags: ["vegetarian", "vegan", "nuts", "spicy", "traditional"] },
     { id: 152, name: "Megrelian adjika", price: 3, restaurantId: 5, restaurantName: "Lima", category: "sauce", calories: 60, tags: ["vegetarian", "vegan", "spicy", "traditional"] },
-        // Bobo — Salads
-        // Bobo — Salads
+        
+    // Bobo — Salads
     { id: 153, name: "Green salad", price: 14, restaurantId: 6, restaurantName: "Bobo", category: "cold", calories: 180, tags: ["vegetarian", "vegan", "light", "fresh"] },
     { id: 154, name: "Georgian salad", price: 12, restaurantId: 6, restaurantName: "Bobo", category: "cold", calories: 140, tags: ["vegetarian", "vegan", "light", "fresh"] },
     { id: 155, name: "Georgian salad with walnuts", price: 14, restaurantId: 6, restaurantName: "Bobo", category: "cold", calories: 280, tags: ["vegetarian", "vegan", "nuts", "fresh"] },
