@@ -39,11 +39,11 @@ export const dishes: Dish[] = [
     { id: 31, name: "Chicken steak", price: 18, restaurantId: 5, restaurantName: "Lima", category: "barbecue", calories: 400, tags: ["meat", "chicken", "grilled"] },
 
     // Lima — Khinkali
-    { id: 32, name: "Khinkali with beef", price: 1.8, restaurantId: 5, restaurantName: "Lima", category: "khinkali", calories: 110, tags: ["meat", "beef", "dough"] },
-    { id: 33, name: "Khinkali Khalakhuri", price: 1.7, restaurantId: 5, restaurantName: "Lima", category: "khinkali", calories: 115, tags: ["meat", "pork", "beef", "dough"] },
-    { id: 34, name: "Khinkali Mtiuluri", price: 1.7, restaurantId: 5, restaurantName: "Lima", category: "khinkali", calories: 115, tags: ["meat", "pork", "beef", "dough"] },
-    { id: 35, name: "Khinkali with mushrooms", price: 1.5, restaurantId: 5, restaurantName: "Lima", category: "khinkali", calories: 85, tags: ["vegetarian", "mushrooms", "dough"] },
-    { id: 36, name: "Khinkali with cheese", price: 1.9, restaurantId: 5, restaurantName: "Lima", category: "khinkali", calories: 120, tags: ["vegetarian", "cheese", "dough"] },
+    { id: 32, name: "Khinkali with beef", price: 1.8, restaurantId: 5, restaurantName: "Lima", category: "khinkali", calories: 110, tags: ["meat", "beef", "dough"], minQty: 10 },
+    { id: 33, name: "Khinkali Khalakhuri", price: 1.7, restaurantId: 5, restaurantName: "Lima", category: "khinkali", calories: 115, tags: ["meat", "pork", "beef", "dough"], minQty: 10 },
+    { id: 34, name: "Khinkali Mtiuluri", price: 1.7, restaurantId: 5, restaurantName: "Lima", category: "khinkali", calories: 115, tags: ["meat", "pork", "beef", "dough"], minQty: 10 },
+    { id: 35, name: "Khinkali with mushrooms", price: 1.5, restaurantId: 5, restaurantName: "Lima", category: "khinkali", calories: 85, tags: ["vegetarian", "mushrooms", "dough"], minQty: 10 },
+    { id: 36, name: "Khinkali with cheese", price: 1.9, restaurantId: 5, restaurantName: "Lima", category: "khinkali", calories: 120, tags: ["vegetarian", "cheese", "dough"], minQty: 10 },
 
     // Lima — The Dough
     { id: 37, name: "Pizza combined", price: 20, restaurantId: 5, restaurantName: "Lima", category: "dough", calories: 1100, tags: ["meat", "cheese", "filling", "sharing"] },
@@ -251,13 +251,13 @@ export const dishes: Dish[] = [
     { id: 216, name: "Chvishtari", price: 9, restaurantId: 6, restaurantName: "Bobo", category: "bread", calories: 340, tags: ["vegetarian", "cheese", "bread", "traditional"] },
 
     // Bobo — Khinkali
-    { id: 217, name: "Khinkali Kalakuri", price: 2.1, restaurantId: 6, restaurantName: "Bobo", category: "khinkali", calories: 115, tags: ["meat", "pork", "beef", "dough"] },
-    { id: 218, name: "Khinkali Mtiuluri", price: 2.1, restaurantId: 6, restaurantName: "Bobo", category: "khinkali", calories: 115, tags: ["meat", "pork", "beef", "dough"] },
-    { id: 219, name: "Khinkali with beef", price: 2.2, restaurantId: 6, restaurantName: "Bobo", category: "khinkali", calories: 110, tags: ["meat", "beef", "dough"] },
-    { id: 220, name: "Khinkali with lamb", price: 2.5, restaurantId: 6, restaurantName: "Bobo", category: "khinkali", calories: 125, tags: ["meat", "lamb", "dough"] },
-    { id: 221, name: "Khinkali with lamb, no herbs", price: 2.5, restaurantId: 6, restaurantName: "Bobo", category: "khinkali", calories: 125, tags: ["meat", "lamb", "dough"] },
-    { id: 222, name: "Khinkali with cheese", price: 2.9, restaurantId: 6, restaurantName: "Bobo", category: "khinkali", calories: 120, tags: ["vegetarian", "cheese", "dough"] },
-    { id: 223, name: "Khinkali with mushrooms", price: 2.1, restaurantId: 6, restaurantName: "Bobo", category: "khinkali", calories: 85, tags: ["vegetarian", "mushrooms", "dough"] },
+    { id: 217, name: "Khinkali Kalakuri", price: 2.1, restaurantId: 6, restaurantName: "Bobo", category: "khinkali", calories: 115, tags: ["meat", "pork", "beef", "dough"], minQty: 10 },
+    { id: 218, name: "Khinkali Mtiuluri", price: 2.1, restaurantId: 6, restaurantName: "Bobo", category: "khinkali", calories: 115, tags: ["meat", "pork", "beef", "dough"], minQty: 10 },
+    { id: 219, name: "Khinkali with beef", price: 2.2, restaurantId: 6, restaurantName: "Bobo", category: "khinkali", calories: 110, tags: ["meat", "beef", "dough"], minQty: 10 },
+    { id: 220, name: "Khinkali with lamb", price: 2.5, restaurantId: 6, restaurantName: "Bobo", category: "khinkali", calories: 125, tags: ["meat", "lamb", "dough"], minQty: 10 },
+    { id: 221, name: "Khinkali with lamb, no herbs", price: 2.5, restaurantId: 6, restaurantName: "Bobo", category: "khinkali", calories: 125, tags: ["meat", "lamb", "dough"], minQty: 10 },
+    { id: 222, name: "Khinkali with cheese", price: 2.9, restaurantId: 6, restaurantName: "Bobo", category: "khinkali", calories: 120, tags: ["vegetarian", "cheese", "dough"], minQty: 10 },
+    { id: 223, name: "Khinkali with mushrooms", price: 2.1, restaurantId: 6, restaurantName: "Bobo", category: "khinkali", calories: 85, tags: ["vegetarian", "mushrooms", "dough"], minQty: 10 },
 
     // Bobo — Grill
     { id: 224, name: "Pork mtsvadi", price: 20, restaurantId: 6, restaurantName: "Bobo", category: "barbecue", calories: 620, tags: ["meat", "pork", "grilled", "filling", "traditional"] },

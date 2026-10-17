@@ -20,4 +20,5 @@ export interface Dish {
     category: string
     calories: number
     tags: string[]
+    minQty?: number
 }

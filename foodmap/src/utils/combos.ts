@@ -59,7 +59,7 @@ function scoreCombo(combo: Combo, budget: number, mode: Mode): number {
     const priceScore = 1 - (combo.total / budget)
     let caloriesFull = 0
         for (const dish of combo.items) {
-            caloriesFull = dish.calories + caloriesFull
+            caloriesFull = dish.calories * (dish.minQty ?? 1) + caloriesFull
         }
     const fillingScore = Math.min(caloriesFull / 1500, 1)
     const tastyScore = 0.5
@@ -73,7 +73,7 @@ function matchTemplate(dishes: Dish[], roles: string[], chosen: Dish[], budget: 
         if (roles.length === 0) {
             let summ = 0
             for (const a of chosen) {
-                summ = a.price + summ
+                summ = a.price * (a.minQty ?? 1) + summ
             }
             result.push({items: chosen, total: summ})
             return;
@@ -82,10 +82,10 @@ function matchTemplate(dishes: Dish[], roles: string[], chosen: Dish[], budget: 
         const rest = roles.slice(1)
         let spent = 0
         for (const a of chosen){
-            spent = a.price + spent
+            spent = a.price * (a.minQty ?? 1) + spent
         }
         for (const dish of getByRole(dishes, role)) {
-                if (spent + dish.price > budget){
+                if (spent + dish.price * (dish.minQty ?? 1)  > budget){
                 continue
             }
             matchTemplate(dishes, rest,[...chosen, dish], budget, result)
