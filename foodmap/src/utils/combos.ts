@@ -40,9 +40,9 @@ export const templates: string[][] = [
 ]
 
 const weights: Record<Mode, { price: number; taste: number; filling: number }> = {
-    cheap:     { price: 0.7, taste: 0.1, filling: 0.2 },
-    balanced:  { price: 0.4, taste: 0.4, filling: 0.2 },
-    gourmet:   { price: 0.1, taste: 0.8, filling: 0.1 },
+    cheap:     { price: 0.3, taste: 0, filling: 0.7 },
+    balanced:  { price: 0.2, taste: 0.4, filling: 0.4 },
+    gourmet:   { price: 0, taste: 0.8, filling: 0.2 },
 }
 
 export function getByRole( dishes: Dish[], role: string): Dish[] {
