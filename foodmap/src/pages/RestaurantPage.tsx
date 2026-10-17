@@ -17,7 +17,7 @@ function RestaurantPage() {
     const budgetDishes = budgetNum === 0
         ? restaurantDishes
         : restaurantDishes.filter(d => d.price <= budgetNum)
-
+    const modes: Mode[] = ["cheap", "balanced", "gourmet"]
     return (
     <div>
         <h1>{restaurant.name}</h1>
@@ -26,6 +26,13 @@ function RestaurantPage() {
         <p>Rating: {restaurant.rating}</p>
 
         <input type="number" value={budget} onChange={(e) => setBudget(e.target.value)} placeholder="Your budget" />
+        {modes.map((m) => 
+            <button key={m}
+            onClick={() => setMode(m)}
+            disabled={m === mode }
+            >{m}</button>
+        )}
+        
 
         <h2>Best combos</h2>
         {combos.map((combo, index) => (
