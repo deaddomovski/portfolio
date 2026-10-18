@@ -1,4 +1,6 @@
 export interface Restaurant {
+    country: string
+    city: string
     id: number
     name: string
     address: string

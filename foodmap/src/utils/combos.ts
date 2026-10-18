@@ -29,14 +29,34 @@ export const categoryRole: Record<string, string> = {
 }
 
 export const templates: string[][] = [
+    // одно блюдо
+    ["main"],
+
+    // основное + одно дополнение
     ["main", "drink"],
     ["main", "salad"],
-    ["main", "salad", "drink"],
     ["main", "soup"],
-    ["main", "soup", "salad"],
+    ["main", "side"],
+    ["main", "dessert"],
+
+    // классический обед из трёх
+    ["main", "salad", "drink"],
+    ["main", "soup", "drink"],
     ["main", "side", "drink"],
-    ["soup", "salad"],
+    ["main", "soup", "salad"],
+    ["main", "salad", "side"],
     ["main", "drink", "dessert"],
+
+    // плотный обед из четырёх
+    ["main", "soup", "salad", "drink"],
+    ["main", "salad", "side", "drink"],
+
+    // лёгкие варианты без основного
+    ["soup", "salad"],
+    ["soup", "side"],
+    ["soup", "salad", "drink"],
+    ["soup", "side", "drink"],
+    ["salad", "drink"],
 ]
 
 const weights: Record<Mode, { price: number; taste: number; filling: number }> = {

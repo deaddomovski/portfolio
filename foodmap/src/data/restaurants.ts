@@ -2,6 +2,8 @@ import type { Restaurant } from '../types/index';
 
 export const restaurants: Restaurant[] = [
     {
+    country: "GE",
+    city: "Batumi",   
     id:1,
     name: "Chacha Time",
     address: "Batumi Boulevard 5",
@@ -14,6 +16,8 @@ export const restaurants: Restaurant[] = [
     lng: 41.6367
     },
     {
+    country: "GE",
+    city: "Batumi",    
     id:2,
     name: "Pizza Sole Mio",
     address: "Pushkin Street 12",
@@ -26,6 +30,8 @@ export const restaurants: Restaurant[] = [
     lng: 41.6389
     },
     {
+    country: "GE",
+    city: "Batumi",   
     id:3,
     name: "Adjarian Kitchen",
     address: "Rustaveli Avenue 8",
@@ -38,30 +44,36 @@ export const restaurants: Restaurant[] = [
     lng: 41.6412
     },
     {
-    id: 4,
-    name: "RollBar",
-    address: "Ninoshvili Street 3",
-    rating: 4.0,
-    cuisine: "Japanese",
-    priceRange: 3,
-    description: "Fresh sushi and rolls",
-    imageUrl: "",
-    lat: 41.6134,
-    lng: 41.6356
+        country: "GE",
+        city: "Batumi",       
+        id: 4,
+        name: "RollBar",
+        address: "Ninoshvili Street 3",
+        rating: 4.0,
+        cuisine: "Japanese",
+        priceRange: 3,
+        description: "Fresh sushi and rolls",
+        imageUrl: "",
+        lat: 41.6134,
+        lng: 41.6356
     },
    {
-    id: 5,
-    name: "Lima",
-    address: "61b Javakhishvili St, Batumi 6010",
-    rating: 4.4,
-    cuisine: "Georgian",
-    priceRange: 2,
-    description: "Georgian restaurant with barbecue, khinkali and khachapuri",
-    imageUrl: "",
-    lat: 41.6438,
-    lng: 41.6297
+        country: "GE",
+        city: "Batumi",   
+        id: 5,
+        name: "Lima",
+        address: "61b Javakhishvili St, Batumi 6010",
+        rating: 4.4,
+        cuisine: "Georgian",
+        priceRange: 2,
+        description: "Georgian restaurant with barbecue, khinkali and khachapuri",
+        imageUrl: "",
+        lat: 41.6438,
+        lng: 41.6297
     },
     {
+        country: "GE",
+        city: "Batumi",   
         id: 6,
         name: "Bobo",
         address: "",
