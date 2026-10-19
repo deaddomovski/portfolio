@@ -35,16 +35,17 @@ function RestaurantPage() {
         
 
         <h2>Best combos</h2>
-        {combos.map((combo, index) => (
+        {combos.length === 0 && budgetNum > 0 ? (<p>No full meal could be found for this budget</p>):(
+        combos.map((combo, index) => (
             <div key={index}>
             <p>Total: {combo.total}₾</p>
             <ul>
                 {combo.items.map(dish => (
                     <li key={dish.id}>{dish.minQty && `${dish.minQty} × `}{dish.name} — {dish.price * (dish.minQty ?? 1)}₾</li>
-                ))}
+                ))}   
             </ul>
         </div>
-        ))}
+        )))}
 
         <h2>Within your budget</h2>
         <ul>
