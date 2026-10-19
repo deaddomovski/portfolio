@@ -93,7 +93,7 @@ function matchTemplate(dishes: Dish[], roles: string[], chosen: Dish[], budget: 
             summ = a.price * (a.minQty ?? 1) + summ
         }
         result.push({items: chosen, total: summ})
-        return;
+        return ;
     }
     const role = roles[0]
     const rest = roles.slice(1)
