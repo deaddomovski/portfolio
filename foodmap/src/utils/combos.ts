@@ -1,4 +1,4 @@
-import type { Dish } from '../types/index'
+import type { Dish, Restaurant } from '../types/index'
 export type Mode = "cheap" | "balanced" | "gourmet"
 
 export const categoryRole: Record<string, string> = {
@@ -13,8 +13,11 @@ export const categoryRole: Record<string, string> = {
     // супы
     soup: "soup",
 
-    // салаты и холодные закуски
+    // салаты
     cold: "salad",
+
+    // закуски: сыры, пхали, соленья
+    snack: "snack",
 
     // гарниры и хлеб
     garnish: "side",
@@ -23,40 +26,34 @@ export const categoryRole: Record<string, string> = {
     // соусы
     sauce: "extra",
 
-    // на будущее
+    // напитки и десерты
     drinks: "drink",
     dessert: "dessert",
 }
 
 export const templates: string[][] = [
-    // одно блюдо
+    //main 
     ["main"],
 
-    // основное + одно дополнение
+    // основное + напиток
     ["main", "drink"],
-    ["main", "salad"],
-    ["main", "soup"],
-    ["main", "side"],
-    ["main", "dessert"],
 
     // классический обед из трёх
     ["main", "salad", "drink"],
+    ["main", "snack", "drink"],
     ["main", "soup", "drink"],
     ["main", "side", "drink"],
-    ["main", "soup", "salad"],
-    ["main", "salad", "side"],
-    ["main", "drink", "dessert"],
+    ["main", "dessert", "drink"],
 
     // плотный обед из четырёх
     ["main", "soup", "salad", "drink"],
+    ["main", "soup", "snack", "drink"],
+    ["main", "salad", "snack", "drink"],
     ["main", "salad", "side", "drink"],
 
-    // лёгкие варианты без основного
-    ["soup", "salad"],
-    ["soup", "side"],
-    ["soup", "salad", "drink"],
+    // лёгкий обед без основного
     ["soup", "side", "drink"],
-    ["salad", "drink"],
+    ["soup", "salad", "drink"],
 ]
 
 const weights: Record<Mode, { price: number; taste: number; filling: number }> = {
@@ -139,4 +136,15 @@ export function findCombos(dishes: Dish[], budget: number, mode: Mode): Combo[] 
     }
 
     return top
+}
+
+export function findBestOverall(restaurants: Restaurant[], dishes: Dish[], budget: number, mode: Mode): Combo[]{
+    const all: Combo[] = []
+    for(const r of restaurants){
+        const rDishes = dishes.filter(d => d.restaurantId === r.id)
+        const top = findCombos(rDishes, budget, mode)
+        all.push(...top)
+    }
+    all.sort((a, b) => scoreCombo(b, budget,mode) - scoreCombo(a,budget,mode))
+    return all.slice(0,5)
 }
