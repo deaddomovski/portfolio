@@ -1,14 +1,19 @@
 import { useParams } from "react-router-dom";
 import { restaurants } from "../data/restaurants";
 import { dishes } from '../data/dishes'
-import { useState } from "react"
 import { findCombos } from '../utils/combos'
 import  type { Mode } from '../utils/combos'
 
-function RestaurantPage() {
+
+interface RestaurantPageProps {
+    budget: string
+    setBudget: (value: string) => void
+    mode: Mode
+    setMode: (value: Mode) => void
+}
+
+function RestaurantPage({budget, setBudget, mode, setMode}: RestaurantPageProps) {
     const { id } = useParams()
-    const [budget, setBudget] = useState('')
-    const [mode, setMode] = useState<Mode>("balanced")
     const budgetNum = Number(budget)
     const restaurant = restaurants.find(r => r.id === Number(id))
     if (!restaurant) return <p>Ресторан не найден</p>

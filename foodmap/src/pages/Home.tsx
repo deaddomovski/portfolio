@@ -3,21 +3,35 @@ import RestaurantCard from '../components/RestaurantCard'
 import { useState } from "react" ;
 import FilterBar from '../components/FilterBar';
 import { dishes } from '../data/dishes';
-import { findBestOverall } from '../utils/combos';
+import { findBestOverall} from '../utils/combos';
 import { Link } from 'react-router-dom'
+import  type { Mode } from '../utils/combos'
 
-function Home() {
+interface HomeProps {
+    budget: string
+    setBudget: (value: string) => void
+    mode: Mode
+    setMode: (value: Mode) => void
+}
+
+function Home({budget, setBudget, mode, setMode}: HomeProps) {
     const [selected, setSelected] = useState('All')
-    const [budget, setBudget] = useState('')
     const budgetNum = Number(budget)
+    const modes: Mode[] = ["cheap", "balanced", "gourmet"]
 const filtered = restaurants
     .filter(r => selected === 'All' || r.cuisine === selected)
     .filter(r => budgetNum === 0 || dishes.some(d => d.restaurantId === r.id && d.price <= budgetNum))
-    const combos = budgetNum > 0 ? findBestOverall(filtered, dishes, budgetNum, "balanced") : []
+    const combos = budgetNum > 0 ? findBestOverall(filtered, dishes, budgetNum, mode) : []
 return (
         <div>
             <label htmlFor="budget">Your budget: </label>
             <input id="budget" type="number" value={budget} onChange={(e) => setBudget(e.target.value)}></input>
+            {modes.map((m) => 
+            <button key={m}
+            onClick={() => setMode(m)}
+            disabled={m === mode }
+            >{m}</button>
+        )}
             <FilterBar selected={selected} onSelect={setSelected} />
                 {filtered.map((restaurant) => (
             <RestaurantCard key={restaurant.id} restaurant={restaurant} />
