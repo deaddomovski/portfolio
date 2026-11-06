@@ -3,7 +3,7 @@ import { restaurants } from "../data/restaurants";
 import { dishes } from '../data/dishes'
 import { findCombos } from '../utils/combos'
 import  type { Mode } from '../utils/combos'
-
+import ModeSwitcher from '../components/ModeSwitcher';
 
 interface RestaurantPageProps {
     budget: string
@@ -31,12 +31,7 @@ function RestaurantPage({budget, setBudget, mode, setMode}: RestaurantPageProps)
         <p>Rating: {restaurant.rating}</p>
 
         <input type="number" value={budget} onChange={(e) => setBudget(e.target.value)} placeholder="Your budget" />
-        {modes.map((m) => 
-            <button key={m}
-            onClick={() => setMode(m)}
-            disabled={m === mode }
-            >{m}</button>
-        )}
+        <ModeSwitcher mode={mode} setMode={setMode} />
         
 
         <h2>Best combos</h2>

@@ -6,6 +6,7 @@ import { dishes } from '../data/dishes';
 import { findBestOverall} from '../utils/combos';
 import { Link } from 'react-router-dom'
 import  type { Mode } from '../utils/combos'
+import ModeSwitcher from '../components/ModeSwitcher';
 
 interface HomeProps {
     budget: string
@@ -26,12 +27,7 @@ return (
         <div>
             <label htmlFor="budget">Your budget: </label>
             <input id="budget" type="number" value={budget} onChange={(e) => setBudget(e.target.value)}></input>
-            {modes.map((m) => 
-            <button key={m}
-            onClick={() => setMode(m)}
-            disabled={m === mode }
-            >{m}</button>
-        )}
+            <ModeSwitcher mode={mode} setMode={setMode} />
             <FilterBar selected={selected} onSelect={setSelected} />
                 {filtered.map((restaurant) => (
             <RestaurantCard key={restaurant.id} restaurant={restaurant} />
