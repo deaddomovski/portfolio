@@ -3,7 +3,7 @@ import RestaurantCard from '../components/RestaurantCard'
 import { useState } from "react" ;
 import FilterBar from '../components/FilterBar';
 import { dishes } from '../data/dishes';
-import { findBestOverall} from '../utils/combos';
+import { findBestOverall, portionPrice} from '../utils/combos';
 import { Link } from 'react-router-dom'
 import  type { Mode } from '../utils/combos'
 import ModeSwitcher from '../components/ModeSwitcher';
@@ -21,7 +21,7 @@ function Home({budget, setBudget, mode, setMode}: HomeProps) {
     const modes: Mode[] = ["cheap", "balanced", "gourmet"]
 const filtered = restaurants
     .filter(r => selected === 'All' || r.cuisine === selected)
-    .filter(r => budgetNum === 0 || dishes.some(d => d.restaurantId === r.id && d.price <= budgetNum))
+    .filter(r => budgetNum === 0 || dishes.some(d => d.restaurantId === r.id && portionPrice(d) <= budgetNum))
     const combos = budgetNum > 0 ? findBestOverall(filtered, dishes, budgetNum, mode) : []
 return (
         <div>
@@ -40,7 +40,7 @@ return (
                 <p>Total: {combo.total}₾</p>
                 <ul>
                     {combo.items.map(dish => (
-                        <li key={dish.id}>{dish.minQty && `${dish.minQty} × `}{dish.name} — {dish.price * (dish.minQty ?? 1)}₾</li>
+                        <li key={dish.id}>{dish.name} — {dish.minQty ? `${dish.price}₾ × ${dish.minQty} = ${portionPrice(dish)}₾` : `${dish.price}₾`}</li>
                     ))}   
                 </ul>
             </div>

@@ -90,7 +90,7 @@ function matchTemplate(dishes: Dish[], roles: string[], chosen: Dish[], budget: 
     if (roles.length === 0) {
         let summ = 0
         for (const a of chosen) {
-            summ = a.price * (a.minQty ?? 1) + summ
+            summ = portionPrice(a) + summ
         }
         result.push({items: chosen, total: summ})
         return ;
@@ -99,10 +99,10 @@ function matchTemplate(dishes: Dish[], roles: string[], chosen: Dish[], budget: 
     const rest = roles.slice(1)
     let spent = 0
     for (const a of chosen){
-        spent = a.price * (a.minQty ?? 1) + spent
+        spent = portionPrice(a) + spent
     }
     for (const dish of getByRole(dishes, role)) {
-            if (spent + dish.price * (dish.minQty ?? 1)  > budget){
+            if (spent + portionPrice(dish)  > budget){
                 continue
             }
         matchTemplate(dishes, rest,[...chosen, dish], budget, result)
@@ -147,4 +147,8 @@ export function findBestOverall(restaurants: Restaurant[], dishes: Dish[], budge
     }
     all.sort((a, b) => scoreCombo(b, budget,mode) - scoreCombo(a,budget,mode))
     return all.slice(0,5)
+}
+
+export function portionPrice(dish: Dish): number{
+    return Math.round((dish.price * (dish.minQty ?? 1)) * 100) / 100
 }

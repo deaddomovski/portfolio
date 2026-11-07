@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { restaurants } from "../data/restaurants";
 import { dishes } from '../data/dishes'
-import { findCombos } from '../utils/combos'
+import { findCombos, portionPrice } from '../utils/combos'
 import  type { Mode } from '../utils/combos'
 import ModeSwitcher from '../components/ModeSwitcher';
 
@@ -21,8 +21,7 @@ function RestaurantPage({budget, setBudget, mode, setMode}: RestaurantPageProps)
     const combos = budgetNum > 0 ? findCombos(restaurantDishes, budgetNum, mode) : []
     const budgetDishes = budgetNum === 0
         ? restaurantDishes
-        : restaurantDishes.filter(d => d.price <= budgetNum)
-    const modes: Mode[] = ["cheap", "balanced", "gourmet"]
+        : restaurantDishes.filter(d => portionPrice(d) <= budgetNum)
     return (
     <div>
         <h1>{restaurant.name}</h1>
@@ -41,7 +40,7 @@ function RestaurantPage({budget, setBudget, mode, setMode}: RestaurantPageProps)
             <p>Total: {combo.total}₾</p>
             <ul>
                 {combo.items.map(dish => (
-                    <li key={dish.id}>{dish.minQty && `${dish.minQty} × `}{dish.name} — {dish.price * (dish.minQty ?? 1)}₾</li>
+                    <li key={dish.id}>{dish.name} — {dish.minQty ? `${dish.price}₾ × ${dish.minQty} = ${portionPrice(dish)}₾` : `${dish.price}₾`}</li>
                 ))}   
             </ul>
         </div>
@@ -50,14 +49,14 @@ function RestaurantPage({budget, setBudget, mode, setMode}: RestaurantPageProps)
         <h2>Within your budget</h2>
         <ul>
             {budgetDishes.map(dish => (
-                <li key={dish.id}>{dish.name} — {dish.price}₾</li>
+                <li key={dish.id}>{dish.name} — {dish.minQty ? `${dish.price}₾ × ${dish.minQty} = ${portionPrice(dish)}₾` : `${dish.price}₾`}</li>
             ))}
         </ul>
 
         <h2>Full menu</h2>
         <ul>
             {restaurantDishes.map(dish => (
-                <li key={dish.id}>{dish.name} — {dish.price}₾</li>
+                <li key={dish.id}>{dish.name} — {dish.minQty ? `${dish.price}₾ × ${dish.minQty} = ${portionPrice(dish)}₾` : `${dish.price}₾`}</li>
             ))}
         </ul>
     </div>
