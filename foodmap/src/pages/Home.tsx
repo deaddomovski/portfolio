@@ -27,6 +27,7 @@ return (
         <div>
             <label htmlFor="budget">Your budget: </label>
             <input id="budget" type="number" value={budget} onChange={(e) => setBudget(e.target.value)}></input>
+            <Link to="/taste">Take the taste test</Link>
             <ModeSwitcher mode={mode} setMode={setMode} />
             <FilterBar selected={selected} onSelect={setSelected} />
                 {filtered.map((restaurant) => (
