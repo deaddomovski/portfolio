@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { restaurants } from "../data/restaurants";
 import { dishes } from '../data/dishes'
-import { findCombos, portionPrice } from '../utils/combos'
+import { findCombos, portionPrice, formatPrice } from '../utils/combos'
 import  type { Mode } from '../utils/combos'
 import ModeSwitcher from '../components/ModeSwitcher';
 
@@ -40,7 +40,7 @@ function RestaurantPage({budget, setBudget, mode, setMode}: RestaurantPageProps)
             <p>Total: {combo.total}₾</p>
             <ul>
                 {combo.items.map(dish => (
-                    <li key={dish.id}>{dish.name} — {dish.minQty ? `${dish.price}₾ × ${dish.minQty} = ${portionPrice(dish)}₾` : `${dish.price}₾`}</li>
+                    <li key={dish.id}>{dish.name} — {formatPrice(dish)}</li>
                 ))}   
             </ul>
         </div>
@@ -49,14 +49,14 @@ function RestaurantPage({budget, setBudget, mode, setMode}: RestaurantPageProps)
         <h2>Within your budget</h2>
         <ul>
             {budgetDishes.map(dish => (
-                <li key={dish.id}>{dish.name} — {dish.minQty ? `${dish.price}₾ × ${dish.minQty} = ${portionPrice(dish)}₾` : `${dish.price}₾`}</li>
+                <li key={dish.id}>{dish.name} — {formatPrice(dish)}</li>
             ))}
         </ul>
 
         <h2>Full menu</h2>
         <ul>
             {restaurantDishes.map(dish => (
-                <li key={dish.id}>{dish.name} — {dish.minQty ? `${dish.price}₾ × ${dish.minQty} = ${portionPrice(dish)}₾` : `${dish.price}₾`}</li>
+                <li key={dish.id}>{dish.name} — {formatPrice(dish)}</li>
             ))}
         </ul>
     </div>

@@ -152,3 +152,7 @@ export function findBestOverall(restaurants: Restaurant[], dishes: Dish[], budge
 export function portionPrice(dish: Dish): number{
     return Math.round((dish.price * (dish.minQty ?? 1)) * 100) / 100
 }
+
+export function formatPrice(dish: Dish): string{
+    return dish.minQty ? `${dish.price}₾ × ${dish.minQty} = ${portionPrice(dish)}₾` : `${dish.price}₾`
+}

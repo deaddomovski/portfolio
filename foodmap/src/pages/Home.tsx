@@ -3,7 +3,7 @@ import RestaurantCard from '../components/RestaurantCard'
 import { useState } from "react" ;
 import FilterBar from '../components/FilterBar';
 import { dishes } from '../data/dishes';
-import { findBestOverall, portionPrice} from '../utils/combos';
+import { findBestOverall, portionPrice, formatPrice} from '../utils/combos';
 import { Link } from 'react-router-dom'
 import  type { Mode } from '../utils/combos'
 import ModeSwitcher from '../components/ModeSwitcher';
@@ -40,7 +40,7 @@ return (
                 <p>Total: {combo.total}₾</p>
                 <ul>
                     {combo.items.map(dish => (
-                        <li key={dish.id}>{dish.name} — {dish.minQty ? `${dish.price}₾ × ${dish.minQty} = ${portionPrice(dish)}₾` : `${dish.price}₾`}</li>
+                        <li key={dish.id}>{dish.name} — {formatPrice(dish)}</li>
                     ))}   
                 </ul>
             </div>
