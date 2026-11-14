@@ -1,15 +1,17 @@
 import { restrictions } from "../data/restrictions";
-import { useState } from "react" ;
 
-function TastePage() {
-    const [selected, setSelected] = useState<string[]>([])
+interface TastePageProps{
+    excluded: string[]
+    setExcluded: (value: string[]) => void
+}
 
-    function toggle(id: string){
-        if (selected.includes(id)) {
-            setSelected(selected.filter(x => id !== x))
+function TastePage({excluded, setExcluded}: TastePageProps) {
+        function toggle(id: string){
+        if (excluded.includes(id)) {
+            setExcluded(excluded.filter(x => id !== x))
         }
         else {
-            setSelected([...selected, id])
+            setExcluded([...excluded, id])
         }
     }
     return(
@@ -20,17 +22,18 @@ function TastePage() {
             <div key={r.id}>
                 <label>
                     <input type="checkbox"
-                    checked={(selected.includes(r.id))}
+                    checked={(excluded.includes(r.id))}
                     onChange={()=> toggle(r.id) } />
                     {r.label}
                 </label>
             </div>
         ))}
-            <p>{JSON.stringify(selected)}</p>
+            <p>{JSON.stringify(excluded)}</p>
             <p>
                 <small>Have an allergy? Always check with the staff.</small>
             </p>
     </div>
 )}
+
 export default TastePage
 

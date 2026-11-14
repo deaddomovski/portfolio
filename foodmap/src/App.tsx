@@ -8,14 +8,16 @@ import  type { Mode } from './utils/combos'
 function App() {
   const [mode, setMode] = useState<Mode>("balanced")
   const [budget, setBudget] = useState('')
+  const [excluded, setExcluded] = useState<string[]>([])
   return (
     <BrowserRouter>
       <div>
         <h1>FoodMap</h1>
         <Routes>
-          <Route path="/" element={<Home budget={budget} setBudget={setBudget} mode={mode} setMode={setMode} />} />
-          <Route path="/restaurant/:id" element={<RestaurantPage budget={budget} setBudget={setBudget} mode={mode} setMode={setMode}/>} />
-          <Route path="/taste" element={<TastePage />}/>
+          <Route path="/" element={<Home budget={budget} setBudget={setBudget} mode={mode} setMode={setMode} excluded={excluded}/>} />
+          <Route path="/restaurant/:id" element={<RestaurantPage budget={budget}
+           setBudget={setBudget} mode={mode} setMode={setMode} excluded={excluded}/>} />
+          <Route path="/taste" element={<TastePage excluded={excluded} setExcluded={setExcluded} />}/>
         </Routes>
       </div>
     </BrowserRouter>

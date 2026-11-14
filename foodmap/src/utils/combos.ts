@@ -1,5 +1,6 @@
 import type { Dish, Restaurant } from '../types/index'
 export type Mode = "cheap" | "balanced" | "gourmet"
+import {restrictions} from '../data/restrictions'
 
 export const categoryRole: Record<string, string> = {
     // основные блюда
@@ -147,6 +148,16 @@ export function findBestOverall(restaurants: Restaurant[], dishes: Dish[], budge
     }
     all.sort((a, b) => scoreCombo(b, budget,mode) - scoreCombo(a,budget,mode))
     return all.slice(0,5)
+}
+
+export function isAllowed(dish: Dish, excluded: string[]): boolean{
+    const banned: string[] = []
+    for (const r of restrictions){
+        if (excluded.includes(r.id)){
+            banned.push(...r.tags)
+        }
+    }
+    return !dish.tags.some(t => banned.includes(t))
 }
 
 export function portionPrice(dish: Dish): number{

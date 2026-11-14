@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { restaurants } from "../data/restaurants";
 import { dishes } from '../data/dishes'
-import { findCombos, portionPrice, formatPrice } from '../utils/combos'
+import { findCombos, portionPrice, formatPrice, isAllowed } from '../utils/combos'
 import  type { Mode } from '../utils/combos'
 import ModeSwitcher from '../components/ModeSwitcher';
 
@@ -10,18 +10,20 @@ interface RestaurantPageProps {
     setBudget: (value: string) => void
     mode: Mode
     setMode: (value: Mode) => void
+    excluded: string[]
 }
 
-function RestaurantPage({budget, setBudget, mode, setMode}: RestaurantPageProps) {
+function RestaurantPage({budget, setBudget, mode, setMode, excluded }: RestaurantPageProps) {
     const { id } = useParams()
     const budgetNum = Number(budget)
     const restaurant = restaurants.find(r => r.id === Number(id))
     if (!restaurant) return <p>Ресторан не найден</p>
     const restaurantDishes = dishes.filter(d => d.restaurantId === restaurant.id)
-    const combos = budgetNum > 0 ? findCombos(restaurantDishes, budgetNum, mode) : []
+    const allowedDishes = restaurantDishes.filter(d => isAllowed(d, excluded))
+    const combos = budgetNum > 0 ? findCombos(allowedDishes, budgetNum, mode) : []
     const budgetDishes = budgetNum === 0
-        ? restaurantDishes
-        : restaurantDishes.filter(d => portionPrice(d) <= budgetNum)
+        ? allowedDishes
+        : allowedDishes.filter(d => portionPrice(d) <= budgetNum)
     return (
     <div>
         <h1>{restaurant.name}</h1>

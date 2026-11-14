@@ -3,7 +3,7 @@ import RestaurantCard from '../components/RestaurantCard'
 import { useState } from "react" ;
 import FilterBar from '../components/FilterBar';
 import { dishes } from '../data/dishes';
-import { findBestOverall, portionPrice, formatPrice} from '../utils/combos';
+import { findBestOverall, portionPrice, formatPrice, isAllowed} from '../utils/combos';
 import { Link } from 'react-router-dom'
 import  type { Mode } from '../utils/combos'
 import ModeSwitcher from '../components/ModeSwitcher';
@@ -13,16 +13,17 @@ interface HomeProps {
     setBudget: (value: string) => void
     mode: Mode
     setMode: (value: Mode) => void
+    excluded: string[]
 }
 
-function Home({budget, setBudget, mode, setMode}: HomeProps) {
+function Home({budget, setBudget, mode, setMode, excluded}: HomeProps) {
     const [selected, setSelected] = useState('All')
     const budgetNum = Number(budget)
-    const modes: Mode[] = ["cheap", "balanced", "gourmet"]
+    const allowedDishes = dishes.filter(d => isAllowed(d, excluded))
 const filtered = restaurants
     .filter(r => selected === 'All' || r.cuisine === selected)
-    .filter(r => budgetNum === 0 || dishes.some(d => d.restaurantId === r.id && portionPrice(d) <= budgetNum))
-    const combos = budgetNum > 0 ? findBestOverall(filtered, dishes, budgetNum, mode) : []
+    .filter(r => budgetNum === 0 || allowedDishes.some(d => d.restaurantId === r.id && portionPrice(d) <= budgetNum))
+    const combos = budgetNum > 0 ? findBestOverall(filtered, allowedDishes, budgetNum, mode) : []
 return (
         <div>
             <label htmlFor="budget">Your budget: </label>
