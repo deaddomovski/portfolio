@@ -15,8 +15,8 @@ function App() {
       <div>
         <h1>FoodMap</h1>
         <Routes>
-          <Route path="/" element={<Home budget={budget} setBudget={setBudget} mode={mode} setMode={setMode} excluded={excluded}/>} />
-          <Route path="/restaurant/:id" element={<RestaurantPage budget={budget}
+          <Route path="/" element={<Home budget={budget} setBudget={setBudget} mode={mode} setMode={setMode} excluded={excluded} ratings={ratings}/>} />
+          <Route path="/restaurant/:id" element={<RestaurantPage budget={budget} ratings={ratings}
            setBudget={setBudget} mode={mode} setMode={setMode} excluded={excluded}/>} />
           <Route path="/taste" element={<TastePage excluded={excluded} setExcluded={setExcluded} ratings={ratings} setRatings={setRatings} />}/>
         </Routes>

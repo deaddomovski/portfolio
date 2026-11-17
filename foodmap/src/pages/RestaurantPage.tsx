@@ -11,16 +11,17 @@ interface RestaurantPageProps {
     mode: Mode
     setMode: (value: Mode) => void
     excluded: string[]
+    ratings: Record<string, number>
 }
 
-function RestaurantPage({budget, setBudget, mode, setMode, excluded }: RestaurantPageProps) {
+function RestaurantPage({budget, setBudget, mode, setMode, excluded, ratings}: RestaurantPageProps) {
     const { id } = useParams()
     const budgetNum = Number(budget)
     const restaurant = restaurants.find(r => r.id === Number(id))
     if (!restaurant) return <p>Ресторан не найден</p>
     const restaurantDishes = dishes.filter(d => d.restaurantId === restaurant.id)
     const allowedDishes = restaurantDishes.filter(d => isAllowed(d, excluded))
-    const combos = budgetNum > 0 ? findCombos(allowedDishes, budgetNum, mode) : []
+    const combos = budgetNum > 0 ? findCombos(allowedDishes, budgetNum, mode, ratings) : []
     const budgetDishes = budgetNum === 0
         ? allowedDishes
         : allowedDishes.filter(d => portionPrice(d) <= budgetNum)

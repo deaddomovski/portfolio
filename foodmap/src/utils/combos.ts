@@ -1,6 +1,7 @@
 import type { Dish, Restaurant } from '../types/index'
 export type Mode = "cheap" | "balanced" | "gourmet"
 import {restrictions} from '../data/restrictions'
+import { tastes } from '../data/tastes'
 
 export const categoryRole: Record<string, string> = {
     // основные блюда
@@ -73,19 +74,24 @@ export type Combo = {
 }
 
 
-function scoreCombo(combo: Combo, budget: number, mode: Mode): number {
+function scoreCombo(combo: Combo, budget: number, mode: Mode, ratings: Record<string, number>): number {
     const priceScore = 1 - (combo.total / budget)
     let caloriesFull = 0
         for (const dish of combo.items) {
             caloriesFull = dish.calories * (dish.minQty ?? 1) + caloriesFull
         }
     const fillingScore = Math.min(caloriesFull / 1500, 1)
-    const tastyScore = 0.5
+        let tasteSum = 0
+    for (const dish of combo.items) {
+        tasteSum += dishTaste(dish, ratings)
+    }
+    const tastyScore = tasteSum / combo.items.length
+
     const w = weights[mode]
     return (
         w.price * priceScore + w.taste * tastyScore + w.filling * fillingScore
     )
-}
+}   
 
 function matchTemplate(dishes: Dish[], roles: string[], chosen: Dish[], budget: number, result: Combo[]){
     if (roles.length === 0) {
@@ -112,12 +118,12 @@ function matchTemplate(dishes: Dish[], roles: string[], chosen: Dish[], budget: 
 
 }
 
-export function findCombos(dishes: Dish[], budget: number, mode: Mode): Combo[] {
+export function findCombos(dishes: Dish[], budget: number, mode: Mode, ratings: Record<string, number>): Combo[] {
     const pillow : Combo[] = []
     for (const template of templates){
         matchTemplate(dishes, template, [], budget, pillow)
     }
-    pillow.sort((a, b) => scoreCombo(b, budget,mode) - scoreCombo(a,budget,mode))
+    pillow.sort((a, b) => scoreCombo(b, budget, mode, ratings) - scoreCombo(a,budget,mode, ratings))
     const top: Combo[] = []        // итоговая тройка
     const used: string[] = []      // id основных блюд, которые уже взяли
 
@@ -139,14 +145,14 @@ export function findCombos(dishes: Dish[], budget: number, mode: Mode): Combo[] 
     return top
 }
 
-export function findBestOverall(restaurants: Restaurant[], dishes: Dish[], budget: number, mode: Mode): Combo[]{
+export function findBestOverall(restaurants: Restaurant[], dishes: Dish[], budget: number, mode: Mode, ratings: Record<string, number>): Combo[]{
     const all: Combo[] = []
     for(const r of restaurants){
         const rDishes = dishes.filter(d => d.restaurantId === r.id)
-        const top = findCombos(rDishes, budget, mode)
+        const top = findCombos(rDishes, budget, mode, ratings)
         all.push(...top)
     }
-    all.sort((a, b) => scoreCombo(b, budget,mode) - scoreCombo(a,budget,mode))
+    all.sort((a, b) => scoreCombo(b, budget,mode, ratings) - scoreCombo(a,budget,mode,ratings))
     return all.slice(0,5)
 }
 
@@ -166,4 +172,15 @@ export function portionPrice(dish: Dish): number{
 
 export function formatPrice(dish: Dish): string{
     return dish.minQty ? `${dish.price}₾ × ${dish.minQty} = ${portionPrice(dish)}₾` : `${dish.price}₾`
+}
+
+export function dishTaste(dish: Dish, ratings: Record<string, number>): number{
+    let total = 0
+    for (const taste of tastes){
+        const matches = taste.tags.some(tag => dish.tags.includes(tag) ||  dish.category === tag)
+        if (matches){
+            total += ratings[taste.id] ?? 0 
+        }
+    }
+    return Math.max(0, Math.min(1, (0.5 + (total / 4))))
 }

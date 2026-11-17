@@ -14,16 +14,17 @@ interface HomeProps {
     mode: Mode
     setMode: (value: Mode) => void
     excluded: string[]
+    ratings: Record<string, number>
 }
 
-function Home({budget, setBudget, mode, setMode, excluded}: HomeProps) {
+function Home({budget, setBudget, mode, setMode, excluded, ratings}: HomeProps) {
     const [selected, setSelected] = useState('All')
     const budgetNum = Number(budget)
     const allowedDishes = dishes.filter(d => isAllowed(d, excluded))
 const filtered = restaurants
     .filter(r => selected === 'All' || r.cuisine === selected)
     .filter(r => budgetNum === 0 || allowedDishes.some(d => d.restaurantId === r.id && portionPrice(d) <= budgetNum))
-    const combos = budgetNum > 0 ? findBestOverall(filtered, allowedDishes, budgetNum, mode) : []
+    const combos = budgetNum > 0 ? findBestOverall(filtered, allowedDishes, budgetNum, mode, ratings) : []
 return (
         <div>
             <label htmlFor="budget">Your budget: </label>
