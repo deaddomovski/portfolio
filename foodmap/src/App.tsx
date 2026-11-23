@@ -2,14 +2,20 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import RestaurantPage from './pages/RestaurantPage'
 import Home from './pages/Home'
 import TastePage from './pages/TastePage';
-import { useState } from "react" ;
+import { useEffect, useState } from "react" ;
 import  type { Mode } from './utils/combos'
 
 function App() {
   const [mode, setMode] = useState<Mode>("balanced")
   const [budget, setBudget] = useState('')
-  const [excluded, setExcluded] = useState<string[]>([])
-  const [ratings, setRatings] = useState<Record<string, number>>({})
+  const [excluded, setExcluded] = useState<string[]> (() => JSON.parse(localStorage.getItem("excluded") ?? "[]"))
+  const [ratings, setRatings] = useState<Record<string, number>>(() => JSON.parse(localStorage.getItem("ratings") ?? "{}"))
+  useEffect(() => {
+    localStorage.setItem("ratings", JSON.stringify(ratings))  
+  }, [ratings])
+  useEffect(() => {
+    localStorage.setItem("excluded", JSON.stringify(excluded))
+  }, [excluded])
   return (
     <BrowserRouter>
       <div>
