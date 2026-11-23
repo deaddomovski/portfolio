@@ -35,7 +35,6 @@ function TastePage({excluded, setExcluded, ratings, setRatings}: TastePageProps)
                 </label>
             </div>
         ))}
-            <p>{JSON.stringify(excluded)}</p>
             <h2>What do you like?</h2>
             {tastes.map((t) => (
                 <div key={t.id}>
@@ -47,7 +46,6 @@ function TastePage({excluded, setExcluded, ratings, setRatings}: TastePageProps)
                                     disabled={(ratings[t.id] ?? 0) === 1}>👍</button>
                 </div>
             ))}
-            <p>{JSON.stringify(ratings)}</p>
             <p>
                 <small>Have an allergy? Always check with the staff.</small>
             </p>
